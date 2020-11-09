@@ -1,4 +1,4 @@
-package com.poc.project.EmployeeDataCrud.Exception;
+package com.poc.project.EmployeDataCrud.Exception;
 
 //@ResponseStatus(HttpStatus.BAD_REQUEST)
 public class InvalidInputException extends RuntimeException {

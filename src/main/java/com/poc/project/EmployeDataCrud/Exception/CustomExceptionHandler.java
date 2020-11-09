@@ -1,4 +1,4 @@
-package com.poc.project.EmployeeDataCrud.Exception;
+package com.poc.project.EmployeDataCrud.Exception;
 
 import java.util.ArrayList;
 import java.util.List;
