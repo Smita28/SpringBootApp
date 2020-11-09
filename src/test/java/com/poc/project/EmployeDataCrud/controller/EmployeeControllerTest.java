@@ -13,6 +13,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import com.poc.project.EmployeDataCrud.model.Employee;
 import com.poc.project.EmployeDataCrud.repository.EmployeeRepository;
 import com.poc.project.EmployeDataCrud.service.EmployeeService;
+import com.poc.project.EmployeDataCrud.util.Util;
 
 public class EmployeeControllerTest {
 
@@ -47,32 +48,35 @@ public class EmployeeControllerTest {
 		employee.setId(2);
 		ReflectionTestUtils.invokeMethod(EmployeeController.class, "saveEmployee", id);
 	}
-	/*@Test
-	public void getEmployeeTest() {
-		int id = 1;
-		employeeService.saveOrUpdate(employee);
-	
-		ReflectionTestUtils.invokeMethod(EmployeeController.class, "getEmployee", id);
-	}
-
 	@Test
-	public void saveEmployeeTest() {
-
-		ReflectionTestUtils.invokeMethod(EmployeeController.class, "saveEmployee", employee);
+	public void getEmployeeTest() {
+		int employeeId = 1;
+		employeeService.getEmployeeById(employeeId);
+		ReflectionTestUtils.invokeMethod(EmployeeController.class, "getEmployee", employeeId);
 	}
-	
+
 	@Test
 	public void updateTest() {
 
+		String email = "smita.s@gmail.com";
+		Util.isValidEmail(email);	
+		employeeService.saveOrUpdate(employee);
+		employeeRepository.save(employee);
+		employee.setEmailId("s.d@gmail,com");
+		employee.setFirstName("Smita");
+		employee.setLastName("Devi");
+		employee.setId(2);
 		ReflectionTestUtils.invokeMethod(EmployeeController.class, "update", employee);
 	}
 	
 	@Test
 	public void deleteEmployeeTest() {
 
-		int id = 1;
-		ReflectionTestUtils.invokeMethod(EmployeeController.class, "deleteEmployee", id);
-	}*/
+		int employeeId = 1;
+		employeeService.delete(employeeId);
+		employeeRepository.deleteById(employeeId);
+		ReflectionTestUtils.invokeMethod(EmployeeController.class, "deleteEmployee", employeeId);
+	}
 	
 
 }
