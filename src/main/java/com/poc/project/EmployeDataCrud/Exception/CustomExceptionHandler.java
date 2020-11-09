@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.poc.project.EmployeDataCrud.controller.EmployeeController;
  
 @EnableWebMvc
-@ControllerAdvice(basePackages = "com.poc.project.EmployeeDataCrud")
+@ControllerAdvice(basePackages = "com.poc.project.EmployeDataCrud")
 public class CustomExceptionHandler  
 {
 	private static final Logger logger    = Logger.getLogger(EmployeeController.class.getName());
@@ -25,7 +25,6 @@ public class CustomExceptionHandler
         details.add(ex.getLocalizedMessage());
         ErrorResponse error = new ErrorResponse("Server Error", details);
         logger.error("Exception: ",ex);
-        System.out.println("Hi");
         return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
  
@@ -34,7 +33,6 @@ public class CustomExceptionHandler
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
         ErrorResponse error = new ErrorResponse("Invalid Input", details);
-        System.out.println("Hi");
         logger.error("Invalid Input Exception: ",ex);
         return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
     }

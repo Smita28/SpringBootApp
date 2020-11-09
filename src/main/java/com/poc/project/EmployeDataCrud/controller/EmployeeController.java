@@ -74,10 +74,16 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/employee")
-	private Employee update(@RequestBody Employee employee) {
+	private ResponseEntity<Employee> update(@RequestBody Employee employee) {
+		ResponseEntity<Employee> response = null;
 		logger.info("Inside update method ");
-		employeeService.saveOrUpdate(employee);
-		return employee;
+		if(Util.isValidEmail(employee.getEmailId())){
+			employeeService.saveOrUpdate(employee);
+			response = new ResponseEntity<>(employee,HttpStatus.OK);
+		}else{
+			 throw new InvalidInputException("Email Id is not valid");
+		}
+		return response;
 	}
 
 	@DeleteMapping("/employee/{employeeId}")
